@@ -1,0 +1,16 @@
+//Please convert following json data into json schema.
+//---
+{
+  "plans": [
+    {
+      "name": "Plan 1",
+      "budget": "5000USD",
+      "days": [
+        {
+          "date": "2023-05-01",
+          "activities": ["eat japapese food", "shopping"]
+        }
+      ]
+    }
+  ]
+}
