@@ -25,9 +25,11 @@
       <input type="date" id="input" bind:value={data.datesTo} />
     </label>
   </form>
+  <br>
   <footer>
-    <button on:click={() => movePage(1)}>Next</button>
+    <button on:click={() => movePage(1)}>Next&nbsp;<img src="next.png" alt="Image" width="10px" height="10px" ></button>
   </footer>
+  <br>
 </div>
 
 <style>

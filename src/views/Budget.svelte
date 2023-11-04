@@ -59,13 +59,21 @@
       <input type="number" bind:value={data.budget.amount} />
     </label>
     <hr />
+    <br />
     <button id="submit">Create Plan</button>
   </form>
+  <br />
   <footer>
-    <button on:click={() => movePage(-1)}>Back</button>
+    <button on:click={() => movePage(-1)}><img src="back1.png" alt="Image" width="10px" height="10px" >&nbsp;Back</button>
   </footer>
+  <br />
 </div>
 
 <style>
-  /* css */
+  #submit {
+    background-color: #1a1a1a;
+    font-size: larger;
+    font-weight: bold;
+    color: #1d90ce;
+  }
 </style>
