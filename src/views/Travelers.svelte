@@ -45,5 +45,7 @@
 </div>
 
 <style>
-  /* css */
+  .card {
+    width: 500px;
+  }
 </style>
