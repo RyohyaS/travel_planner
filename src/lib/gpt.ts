@@ -5,11 +5,21 @@ import { isdebug } from "./store";
 let openai: OpenAI;
 const gptmodel = "gpt-3.5-turbo";
 
-export function InitApi(apikey: string) {
+export async function InitApi(apikey: string) {
   openai = new OpenAI({
     apiKey: apikey.trim(),
     dangerouslyAllowBrowser: true,
   });
+  return checkKeyValidity(openai);
+}
+
+async function checkKeyValidity(api: OpenAI) {
+  try {
+    await api.models.list();
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 const message0: OpenAI.Chat.Completions.ChatCompletionMessageParam = {
@@ -272,7 +282,7 @@ export async function getPlans(preference: Preference) {
     Can you build me a day to day plan of what and where
     I can go to enjoy my trip to the maximum?
     I want to have 2 or 3 choices.`;
-  // if (get(isdebug)) return await getMockPlans();
+  if (get(isdebug)) return await getMockPlans();
   const message = await getGptResponse(promptString, {
     functions: [{ name: "set_trips", parameters: trips_schema }],
     function_call: { name: "set_trips" },

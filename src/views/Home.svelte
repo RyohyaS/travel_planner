@@ -8,6 +8,9 @@
   import Activities from "./Activities.svelte";
   import Budget from "./Budget.svelte";
 
+  export let pagenum = 0;
+  let page;
+
   const pages = [
     Entrance,
     DestinationAndDates,
@@ -16,8 +19,11 @@
     Budget,
     Itinerary,
   ];
-  let page = pages[0];
-  console.log(pages.indexOf(page));
+
+  $: {
+    console.log("pagenum", pagenum);
+    page = pages[pagenum];
+  }
 
   let data = {
     thinking: false,
@@ -26,13 +32,13 @@
     instruction: "",
   };
 
-  function movePage(numpages = 1) {
-    page = pages[pages.indexOf(page) + numpages];
+  function movePage(offset = 1) {
+    pagenum = pagenum + offset;
   }
 
   function reset() {
     resetMessages();
-    page = pages[0];
+    pagenum = 0;
   }
 </script>
 

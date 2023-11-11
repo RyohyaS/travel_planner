@@ -7,13 +7,13 @@
 
   let key0 = "";
   let key = apikey.get();
+  let pagenum;
 
   $isdebug = !!document.location.hash.match(/debug/);
 
-  onMount(() => {
-    if (key) {
-      InitApi(key);
-    } else {
+  onMount(async () => {
+    const isKeySet = key ? await InitApi(key) : false;
+    if (!isKeySet) {
       document.querySelector("dialog").showModal();
     }
   });
@@ -25,12 +25,17 @@
     document.querySelector("dialog").showModal();
   }
 
-  function setApiKey(event) {
+  async function setApiKey(event) {
+    console.log("setApiKey", pagenum);
     event.preventDefault();
+    pagenum = 0;
     key = key0;
     apikey.set(key);
-    InitApi(key);
     document.querySelector("dialog").close();
+    if (!(await InitApi(key))) {
+      window.alert("invalid api key");
+      renew_key(event);
+    }
   }
 </script>
 
@@ -40,7 +45,7 @@
   </div>
 
   {#if key}
-    <Home />
+    <Home bind:pagenum />
 
     {#if $isdebug}
       <div class="debug">
