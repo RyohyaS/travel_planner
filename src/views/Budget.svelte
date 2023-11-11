@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CurrencySelector from "../lib/CurrencySelector.svelte";
   import { getPlans } from "../lib/gpt";
   import { isdebug } from "../lib/store";
 
@@ -47,16 +48,16 @@
     {#if data.budget.include_flight}
       <label
         >Home location
-        <input type="text" bind:value={data.home_location} />
+        <input type="text" bind:value={data.home_location} /><br />
       </label><br />
     {/if}
-    <label
+    <label for="currency"
       >Currency
-      <input type="text" bind:value={data.budget.currency} />
+      <CurrencySelector bind:value={data.budget.currency} />
     </label><br />
     <label
       >Amount
-      <input type="number" bind:value={data.budget.amount} />
+      <input class="small" type="number" bind:value={data.budget.amount} />
     </label>
     <hr />
     <br />
@@ -64,7 +65,14 @@
   </form>
   <br />
   <footer>
-    <button on:click={() => movePage(-1)}><img src="back1.png" alt="Image" width="10px" height="10px" >&nbsp;Back</button>
+    <button on:click={() => movePage(-1)}
+      ><img
+        src="back1.png"
+        alt="BackButton"
+        width="10px"
+        height="10px"
+      />&nbsp;Back</button
+    >
   </footer>
   <br />
 </div>
@@ -75,5 +83,13 @@
     font-size: larger;
     font-weight: bold;
     color: #1d90ce;
+  }
+  input {
+    float: right;
+    width: 120px;
+  }
+  input.small {
+    float: right;
+    width: 80px;
   }
 </style>

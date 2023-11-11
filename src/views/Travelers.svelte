@@ -46,6 +46,10 @@
 
 <style>
   .card {
-    width: 500px;
+    width: 300px;
   }
+  input {
+    float:right;
+    width: 50px;
+}
 </style>

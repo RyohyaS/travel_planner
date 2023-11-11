@@ -38,16 +38,21 @@
 
 <content>
   <h1>Travel Planning Assistant</h1>
-  <br><br><br>
+  <br /><br /><br />
   {#if data.thinking}
     <Spinner />
-    <br><br><br><br><br>
+    <br /><br /><br /><br /><br />
   {:else}
     <svelte:component this={page} bind:data {movePage} />
-    <br><br><br>
-    <button on:click={reset}>Reset</button>
+    <br /><br /><br />
+    <button style="border-width:2px" on:click={reset}>Reset</button>
   {/if}
 </content>
 
 <style>
+  h1 {
+    background-color: rgba(255, 255, 100, 0.3);
+    border-radius: 0.7em;
+    padding: 0.5em;
+  }
 </style>
